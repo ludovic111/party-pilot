@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="../icons/logo.svg" alt="">
+    <div><h1>BombParty Bot</h1><p>Toutes langues · lettres bonus</p></div>
+    <span id="pill" class="pill"></span>
+  </header>
+
+  <section class="stats">
+    <div><b id="words">0</b><span>mots joués</span></div>
+    <div><b id="lives">0</b><span>vies gagnées</span></div>
+    <div><b id="letters">0</b><span>lettres bonus</span></div>
+    <div><b id="best">–</b><span>meilleure réaction</span></div>
+  </section>
+
+  <section class="controls">
+    <div class="seg">
+      <button data-mode="instant">⚡ Instantané</button>
+      <button data-mode="human">⌨ Humain</button>
+    </div>
+    <label id="wpmRow"><span>Vitesse de frappe <b id="wpmVal"></b></span>
+      <input type="range" id="wpm" min="60" max="1500" step="20"></label>
+    <label><span>Délai de réaction <b id="reactVal"></b></span>
+      <input type="range" id="reactionMs" min="0" max="1500" step="10"></label>
+    <button id="toggle" class="toggle"></button>
+  </section>
+
+  <footer>
+    Langues : EN · FR · DE · ES · PT-BR · Breton · Nahuatl · Pokémon.<br>
+    Les autres langues s'apprennent pendant la partie.<br>
+    <em>Educational use only.</em> Alt+W met en pause dans le jeu.
+    <button id="reset" class="link">Remettre les stats à zéro</button>
+  </footer>
+  <script src="popup.js"></script>
+</body>
+</html>
