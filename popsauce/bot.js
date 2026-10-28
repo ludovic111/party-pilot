@@ -1,4 +1,4 @@
-/* PopSauce Bot, page world. Known challenges are answered from a learned database; new ones go to Claude. */
+/* Party Pilot for PopSauce, page world. Known challenges are answered from a learned database; new ones go to Claude. */
 (() => {
   'use strict';
   if (!location.pathname.startsWith('/games/popsauce')) return;
@@ -132,7 +132,7 @@
   }
 
   // ── Panel ─────────────────────────────────────────────────────────────────
-  const LOGO = `<svg aria-hidden="true" viewBox="0 0 128 128"><defs><linearGradient id="pbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff9a3c"/><stop offset="1" stop-color="#ff3d77"/></linearGradient></defs><rect width="128" height="128" rx="30" fill="url(#pbg)"/><circle cx="64" cy="70" r="36" fill="#141826"/><path d="M68 44 49 76h13l-5 24 22-34H65l6-22z" fill="#ffd34d"/></svg>`;
+  const LOGO = `<svg aria-hidden="true" viewBox="0 0 128 128"><defs><linearGradient id="psbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff9a3c"/><stop offset=".55" stop-color="#ff3d77"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient><radialGradient id="psbubble" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#2c3352"/><stop offset="1" stop-color="#121522"/></radialGradient></defs><rect width="128" height="128" rx="30" fill="url(#psbg)"/><path d="M30 30h68a14 14 0 0 1 14 14v36a14 14 0 0 1-14 14H62l-20 16v-16H30a14 14 0 0 1-14-14V44a14 14 0 0 1 14-14z" fill="url(#psbubble)"/><path d="M70 38 50 68h14l-6 22 22-32H66l4-20z" fill="#ffd34d"/><path d="M104 10l3 7.5 7.5 3-7.5 3-3 7.5-3-7.5-7.5-3 7.5-3z" fill="#fff6c2"/></svg>`;
   const CSS = `
     :host{all:initial}
     *{box-sizing:border-box;margin:0;font-family:Inter,"Segoe UI",system-ui,sans-serif}
@@ -170,7 +170,7 @@
     host = document.createElement('div');
     root = host.attachShadow({mode: 'closed'});
     root.innerHTML = `<style>${CSS}</style><div class="card">
-      <header>${LOGO}<div class="title">PopSauce Bot<small>base apprise + Claude</small></div><span class="pill"></span><button class="icon collapse">–</button></header>
+      <header>${LOGO}<div class="title">Party Pilot<small>PopSauce · mémoire + Claude</small></div><span class="pill"></span><button class="icon collapse">–</button></header>
       <div class="body">
         <div class="hero"><div class="answer">—</div><div class="meta"></div></div>
         <div class="note"></div>

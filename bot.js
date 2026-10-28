@@ -1,4 +1,4 @@
-/* BombParty Bot, page world. Socket events drive the hot path; the timer is only a safety net. */
+/* Party Pilot for BombParty, page world. Socket events drive the hot path; the timer is only a safety net. */
 (() => {
   'use strict';
   if (!location.pathname.startsWith('/games/bombparty')) return;
@@ -170,7 +170,7 @@
   }
 
   // ── Panel ─────────────────────────────────────────────────────────────────
-  const LOGO = `<svg aria-hidden="true" viewBox="0 0 128 128"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff9a3c"/><stop offset="1" stop-color="#ff3d77"/></linearGradient><radialGradient id="bomb" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#3a4160"/><stop offset="1" stop-color="#121522"/></radialGradient></defs><rect width="128" height="128" rx="30" fill="url(#bg)"/><circle cx="58" cy="74" r="36" fill="url(#bomb)"/><rect x="71" y="30" width="22" height="17" rx="4" transform="rotate(40 82 38.5)" fill="#121522"/><path d="M89 31c5-9 13-12 19-8" stroke="#121522" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M111 9l3.5 8.5 8.5 3.5-8.5 3.5-3.5 8.5-3.5-8.5-8.5-3.5 8.5-3.5z" fill="#fff6c2"/><path d="M64 48 45 80h13l-5 24 22-34H61l6-22z" fill="#ffd34d"/></svg>`;
+  const LOGO = `<svg aria-hidden="true" viewBox="0 0 128 128"><defs><linearGradient id="bpbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff9a3c"/><stop offset=".55" stop-color="#ff3d77"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient><radialGradient id="bpbubble" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#2c3352"/><stop offset="1" stop-color="#121522"/></radialGradient></defs><rect width="128" height="128" rx="30" fill="url(#bpbg)"/><path d="M30 30h68a14 14 0 0 1 14 14v36a14 14 0 0 1-14 14H62l-20 16v-16H30a14 14 0 0 1-14-14V44a14 14 0 0 1 14-14z" fill="url(#bpbubble)"/><path d="M70 38 50 68h14l-6 22 22-32H66l4-20z" fill="#ffd34d"/><path d="M104 10l3 7.5 7.5 3-7.5 3-3 7.5-3-7.5-7.5-3 7.5-3z" fill="#fff6c2"/></svg>`;
   const CSS = `
     :host{all:initial}
     *{box-sizing:border-box;margin:0;font-family:Inter,"Segoe UI",system-ui,sans-serif}
@@ -220,7 +220,7 @@
     host = document.createElement('div');
     root = host.attachShadow({mode: 'closed'});
     root.innerHTML = `<style>${CSS}</style><div class="card">
-      <header><span class="logo">${LOGO}</span><div class="title">BombParty Bot<small>toutes langues · lettres bonus</small></div>
+      <header><span class="logo">${LOGO}</span><div class="title">Party Pilot<small>BombParty · toutes langues</small></div>
         <span class="pill"></span><button class="icon collapse" title="Réduire">–</button></header>
       <div class="body">
         <div class="lang"><span class="code"></span><span class="langName"></span></div>
