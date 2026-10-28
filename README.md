@@ -16,7 +16,7 @@ A browser extension that plays word and trivia party games with you.</p>
 | --- | --- | --- |
 | [BombParty](#bombparty) | jklm.fun | Finds a word for the prompt in under a millisecond, in every language, going for extra lives |
 | [PopSauce](#popsauce) | jklm.fun | Answers questions it has seen before instantly, asks Claude about new ones (images included) |
-| [Krillion](#krillion) | krillion.io | Suggests rare but valid answers for the prompt *(in progress)* |
+| [Krillion](#krillion) | krillion.io | Suggests rare but valid answers in every mode, plays Puffer Party turns instantly |
 
 Each game gets a panel inside the page, in the same style: what it just played, how fast, and its settings.
 `Alt+W` pauses or resumes it in any game. The toolbar popup holds the settings and lifetime stats.
@@ -46,9 +46,20 @@ Each game gets a panel inside the page, in the same style: what it just played, 
 
 ## Krillion
 
-*In progress.* Krillion keeps its answers on its server, so Party Pilot does not look for them there: it reads
-the prompt shown on the page and asks Claude for rare but valid answers. Planned for every mode: the daily dive,
-Unlimited, the archive, the themed packs and Puffer Party (multiplayer).
+Krillion keeps its answers on its server, so Party Pilot never looks for them there: it reads the prompt shown on
+the page and asks Claude for answers that are rare but certainly valid (rarer answers score more).
+
+- **Daily dive, Unlimited, archive, themed packs**: as soon as a prompt appears, Claude returns about 14 answers,
+  rarest first, shown as chips in the panel. Click one to type it, double-click to send it. **Auto** mode (off by
+  default) sends the best untried answer, at most one per second, accepts the game's spelling corrections and moves
+  on to the next prompt. In a test, a full Unlimited dive went 7 for 7 (6 answers scored "rare"), and the movies pack
+  7 of 7.
+- **Puffer Party**: Party Pilot follows the room from the updates the page already receives, remembers every answer
+  used or rejected in the room, and fetches answers for each new category ahead of time. On your turn it answers in
+  about 1 to 120 ms. A delay setting (0 to 3 s) makes it look human. In a private test room it passed the puffer 27
+  times with no repeated answer.
+
+Turning auto on in the daily dive submits to the real daily leaderboard.
 
 ## Claude API key
 
@@ -81,7 +92,7 @@ Turn off other helpers for the same game (such as Bomb Party Buddy): two scripts
 | `bridge.js` | BombParty: isolated content script serving word lists, settings, stats and learned words |
 | `words/` | BombParty: one normalized word list per language, sorted by length |
 | `popsauce/` | PopSauce: bridge (storage, Claude requests) and the page bot with its panel |
-| `krillion/` | Krillion helper *(in progress)* |
+| `krillion/` | Krillion: `tap.js` relays the party room updates the page receives; `helper.js` holds the logic, Claude calls and panel |
 | `background.js` | Service worker: the only code that calls the Claude API |
 | `popup/` | Toolbar popup: settings, lifetime stats, AI model and key |
 | `icons/` | Logo (`logo.svg`) and toolbar icons |

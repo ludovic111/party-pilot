@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Party Pilot",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "For educational use only. Game helper for jklm.fun (BombParty in every language, PopSauce) and krillion.io.",
   "icons": {
     "16": "icons/icon16.png",
@@ -64,6 +64,25 @@
       "all_frames": true,
       "run_at": "document_idle",
       "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://krillion.io/*"
+      ],
+      "js": [
+        "krillion/tap.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://krillion.io/*"
+      ],
+      "js": [
+        "krillion/helper.js"
+      ],
+      "run_at": "document_idle"
     }
   ],
   "web_accessible_resources": [
