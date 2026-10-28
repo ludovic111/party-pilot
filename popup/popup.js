@@ -1,7 +1,7 @@
 /* Toolbar popup: same settings as the in-game panel, plus lifetime stats. */
 const DEFAULTS = {enabled: true, mode: 'instant', wpm: 300, reactionMs: 0};
 const $ = id => document.getElementById(id);
-let settings = {...DEFAULTS}, stats = {};
+let settings = {...DEFAULTS}, stats = {}, ps = {stats: {}, db: 0}, ai = {}, localKey = false;
 
 function render() {
   $('pill').textContent = settings.enabled ? 'ACTIF' : 'PAUSE';
@@ -18,11 +18,18 @@ function render() {
   $('lives').textContent = (stats.lives || 0).toLocaleString('fr-CH');
   $('letters').textContent = (stats.letters || 0).toLocaleString('fr-CH');
   $('best').textContent = stats.best == null ? '–' : `${stats.best} ms`;
+  for (const [id, value] of [['psFound', ps.stats.found], ['psFromDb', ps.stats.fromDb], ['psFromAi', ps.stats.fromAi], ['psDb', ps.db]])
+    $(id).textContent = (value || 0).toLocaleString('fr-CH');
+  $('model').value = ai.model || localKey.model || 'claude-haiku-5-5';
+  $('keyState').textContent = ai.apiKey ? 'clé perso' : localKey.apiKey ? 'clé locale active' : 'aucune clé';
 }
 async function load() {
-  const stored = await chrome.storage.local.get(['settings', 'stats']);
+  const stored = await chrome.storage.local.get(['settings', 'stats', 'psStats', 'psDb', 'ai']);
   settings = {...DEFAULTS, ...stored.settings};
   stats = stored.stats || {};
+  ps = {stats: stored.psStats || {}, db: Object.keys(stored.psDb || {}).length};
+  ai = stored.ai || {};
+  localKey ||= await fetch('../ai-key.local.json').then(r => r.json()).catch(() => ({}));
   render();
 }
 async function save(patch) {
@@ -37,6 +44,8 @@ for (const id of ['wpm', 'reactionMs']) {
   $(id).addEventListener('change', () => save({[id]: Number($(id).value)}));
 }
 $('toggle').addEventListener('click', () => save({enabled: !settings.enabled}));
-$('reset').addEventListener('click', () => chrome.storage.local.remove('stats'));
+$('reset').addEventListener('click', () => chrome.storage.local.remove(['stats', 'psStats']));
+$('model').addEventListener('change', () => chrome.storage.local.set({ai: {...ai, model: $('model').value}}));
+$('apiKey').addEventListener('change', () => { chrome.storage.local.set({ai: {...ai, apiKey: $('apiKey').value.trim()}}); $('apiKey').value = ''; });
 chrome.storage.onChanged.addListener(load);
 load();

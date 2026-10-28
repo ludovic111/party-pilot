@@ -11,6 +11,7 @@
     <span id="pill" class="pill"></span>
   </header>
 
+  <h2>BombParty</h2>
   <section class="stats">
     <div><b id="words">0</b><span>mots joués</span></div>
     <div><b id="lives">0</b><span>vies gagnées</span></div>
@@ -30,9 +31,28 @@
     <button id="toggle" class="toggle"></button>
   </section>
 
+  <h2>PopSauce</h2>
+  <section class="stats">
+    <div><b id="psFound">0</b><span>trouvées</span></div>
+    <div><b id="psDb">0</b><span>questions en mémoire</span></div>
+    <div><b id="psFromDb">0</b><span>réponses de la mémoire</span></div>
+    <div><b id="psFromAi">0</b><span>réponses de Claude</span></div>
+  </section>
+
+  <h2>IA (PopSauce, Krillion)</h2>
+  <section class="controls">
+    <label><span>Modèle</span>
+      <select id="model">
+        <option value="claude-haiku-5-5">Claude Haiku 5.5 · rapide, quasi gratuit</option>
+        <option value="claude-sonnet-5-5">Claude Sonnet 5.5</option>
+        <option value="claude-opus-5-5">Claude Opus 5.5 · plus lent, plus cher</option>
+      </select></label>
+    <label><span>Clé API Anthropic <b id="keyState"></b></span>
+      <input id="apiKey" type="password" placeholder="sk-ant-… (laisser vide pour la clé locale)" autocomplete="off"></label>
+  </section>
+
   <footer>
-    Langues : EN · FR · DE · ES · PT-BR · Breton · Nahuatl · Pokémon.<br>
-    Les autres langues s'apprennent pendant la partie.<br>
+    BombParty : EN · FR · DE · ES · PT-BR · Breton · Nahuatl · Pokémon ; les autres langues s'apprennent.<br>
     <em>Educational use only.</em> Alt+W met en pause dans le jeu.
     <button id="reset" class="link">Remettre les stats à zéro</button>
   </footer>

@@ -28,3 +28,8 @@ input[type=range] { width: 100%; accent-color: #ff6a5a; }
 footer { color: #5d6684; font-size: 10.5px; text-align: center; }
 footer em { color: #9aa3bd; }
 .link { display: block; margin: 8px auto 0; border: 0; background: none; color: #9aa3bd; text-decoration: underline; cursor: pointer; font: inherit; }
+h2 { font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: #9aa3bd; margin: 0 0 8px; }
+select, input[type=password] { width: 100%; padding: 7px 9px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, .1);
+  background: rgba(255, 255, 255, .05); color: #e8ecf6; font: inherit; }
+select option { background: #10131f; }
+[hidden] { display: none !important; }
